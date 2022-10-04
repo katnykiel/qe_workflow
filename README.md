@@ -27,3 +27,4 @@ Saswat
 
 General
 - [ ] define chemical space
+- [X] add slack integration
