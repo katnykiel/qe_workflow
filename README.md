@@ -22,7 +22,10 @@ Bobby
 
 Saswat
 - [ ] convex hull calcs?
-  - [ ] list of what you need from us
+  - [X] list of what you need from us
+    - [ ] Name of compound (A_xB)
+    - [ ] x-axis as fraction of variable data (x)
+    - [ ] y-axis as Energy of the compound
 - [ ] collect pure states for one example?
 
 General
