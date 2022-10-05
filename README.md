@@ -8,12 +8,12 @@ High-throughput density-functional theory calculations of high-pressure equation
 
 Kat
 - [ ] k-point / ENCUT convergence tests
-- [ ] script w/ functions
+- [X] script w/ functions
   - electronic + ionic energy convergence graph
   - mp api key
   - view structure objects
   - extract outputs from .stdout files (pymatgen monty regex?)
-- [ ] add notebook instructions
+- [X] add notebook instructions
 
 Bobby
 - [ ] investigate change in enforced pressure
