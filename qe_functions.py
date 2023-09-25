@@ -35,68 +35,6 @@ def read_key():
         except:
             print("Something seems wrong with your key")
             
-def view_struct(struct):
-    """
-    Plot interactive 3D crystal structure 
-    
-    input: 
-        struct (pymatgen structure object)
-    output: 
-        n/a
-    """
-    
-    # Import libraries
-    import plotly.express as px
-    import plotly.graph_objects as go
-    import pandas as pd
-    import numpy as np
-    
-    # Convert list of sites to pandas DataFrame object (there's gotta be a better way?)
-    x_list = [site.coords[0] for site in struct.sites]
-    y_list = [site.coords[1] for site in struct.sites]
-    z_list = [site.coords[2] for site in struct.sites]
-    e_list = [site.species.elements[0] for site in struct.sites]
-    
-    scaling_factor = 20
-    r_list = [scaling_factor*site.species.elements[0].atomic_radius_calculated 
-              for site in struct.sites]
-    
-    site_df = pd.DataFrame({'x':x_list,'y':y_list,'z':z_list,'element':e_list,'r':r_list})
-    
-    # Draw spheres at each site
-    fig = px.scatter_3d(site_df,x='x',y='y',z='z',size='r',size_max=100,
-                        color='element',opacity=1,
-                        color_discrete_sequence=px.colors.qualitative.Bold)
-
-    # Convert lattice parameters to unit cell box
-    lattice = struct.lattice.matrix
-    corners = np.array([[0,1,1,0,0,0,0,1,1,0,0,1,1,1,1,0,0],
-                        [0,0,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1],
-                        [0,0,0,0,0,1,1,1,1,1,1,1,0,0,1,1,0]]).T
-    cell = np.matmul(corners,lattice).transpose()
-    box = pd.DataFrame({'x':cell[0],'y':cell[1],'z':cell[2]})
-    
-    # Draw box
-    box = px.line_3d(box,x='x', y='y', z='z')
-    box.data[0]['line']['color']='black'
-    
-    fig.add_traces(list(box.select_traces()))
-    fig.update_layout(scene = dict(
-                      xaxis = dict(
-                        nticks=0,showbackground=False,showticklabels=False,visible=False),
-                      yaxis = dict(
-                        nticks=0,showbackground=False,showticklabels=False,visible=False),
-                      zaxis = dict(
-                        nticks=0,showbackground=False,showticklabels=False,visible=False),),
-                      width=600,
-                      font_size=20,
-                      title_text=f"{struct.formula}: {struct.get_space_group_info()}",
-                    
-                  )
-    
-
-    
-    fig.show()
     
 def get_qe_outputs(file):
     """
