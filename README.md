@@ -6,7 +6,7 @@ This repository provides a sample workflow for running quantum espresso calculat
 
 ### Create a nanoHUB account
 
-To use this repository, first make an account at [nanohub](nanohub.org). This is a free account and will let you access hundreds of scientific tools, all hosted in a cloud environment. 
+To use this repository, first make an account at [nanohub](https://nanohub.org/). This is a free account and will let you access hundreds of scientific tools, all hosted in a cloud environment. 
 
 ### Use a nanoHUB terminal
 
@@ -24,7 +24,7 @@ From here, you can copy this workflow using `git clone https://github.com/katnyk
 
 To run this from a command line, you first need to open a terminal in nanoHUB using one of the methods described above. Then, you can take the following steps:
 
-1. **Create your input file**. An example input file is provided for the relaxation of a Ti3C2 MXene, `mxene_relax.in` . These files can be edited from the command line using *vi* or the text editor of your choice. Copied below is the input file for a MXene relaxation:
+1. **Create your input file**. An example input file is provided for the relaxation of a Ti3C2 MXene, `mxene_relax.in` . These files can be edited from the command line using *vi* or the text editor of your choice. Documentation for the input files is provided on [quantum-espresso.org](https://www.quantum-espresso.org/Doc/INPUT_PW.html). Copied below is the input file for a MXene relaxation:
 
 ```
 &CONTROL
@@ -49,22 +49,22 @@ ATOMIC_SPECIES
   C  12.0107 C.upf
   Ti  47.8670 Ti.upf
 ATOMIC_POSITIONS crystal
-  Ti       0.666667000   0.333333000   0.343385745
-  Ti       0.333333000   0.666667000   0.843307031
-  Ti       0.333333000   0.666667000   0.656614255
-  Ti       0.666667000   0.333333000   0.156692969
-  Ti       0.000000000   0.000000000   0.500000000
-  Ti       0.000000000   0.000000000   0.000000000
-  C        0.333333000   0.666667000   0.414250951
-  C        0.666667000   0.333333000   0.914278916
-  C        0.333333000   0.666667000   0.085721084
-  C        0.666667000   0.333333000   0.585749049
+  Ti       0.666170240   0.333829760   0.342629019
+  Ti       0.333827861   0.666172139   0.842656069
+  Ti       0.333829760   0.666170240   0.657370981
+  Ti       0.666172139   0.333827861   0.157343931
+  Ti      -0.000000000  -0.000000000   0.500000000
+  Ti      -0.000000000  -0.000000000   0.000000000
+  C        0.333331967   0.666668033   0.413869425
+  C        0.666671209   0.333328791   0.913897005
+  C        0.333328791   0.666671209   0.086102995
+  C        0.666668033   0.333331967   0.586130575
 K_POINTS automatic
-  3 3 3 0 0 0
+  3 3 1 0 0 0
 CELL_PARAMETERS angstrom
-  1.533303 -2.655757 -0.000000
-  1.533303 2.655757 0.000000
-  0.000000 0.000000 15.117150
+   1.524221724  -2.661303054  -0.000036399
+   1.524221724   2.661303054   0.000036399
+  -0.000000000   0.000204162  15.168211704
 ```
 
 2. **Run the simulation**. We run the simulation using the following command, printing the output to the console as it is generated:
@@ -77,17 +77,16 @@ watch tail mxene_relax.out
 
 This should take no more than 10 minutes.
 
-3. **Check the output**. The outputs are stored in .out files, which you can parse using a pre-built code by running the following
-
-```
-python
-get_outputs()
-get_convergence_XXX()
-```
-
 ### From a jupyter notebook
 
-To run this from a jupyter notebook, open the "qe_workflow.ipynb" file and run the cells. This workflow demonstrates how to submit jobs remotely to Purdue HPC clusters. 
+To run this from a jupyter notebook, open [qe_workflow.ipynb](qe_workflow.ipynb) and run the cells. 
+
+This workflow demonstrates several additional features: 
+
+- how to submit jobs remotely to Purdue HPC clusters 
+- various helper functions to plot the convergence results and extract the outputs
+- create new input files with pymatgen
+- query for structures from Materials Project
 
 ## Issues
 
